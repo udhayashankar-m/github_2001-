@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+
+<p>JavaScript can change HTML attribute values.</p>
+
+<p>In this case JavaScript changes the value of the src (source) attribute of an image.</p>
+
+<button id="btn1">Turn on the light</button>
+
+<img id="myImage" src="https://www.w3schools.com/js/pic_bulboff.gif" style="width:100px">
+
+<button id="btn2">Turn off the light</button>
+
+
+<script>
+let btn1 = document.getElementById("btn1")
+let btn2 = document.getElementById("btn2") 
+let img = document.getElementById("myImage") 
+
+
+btn1.addEventListener("click",()=>{
+    img.src='https://www.w3schools.com/js/pic_bulbon.gif'
+})
+
+btn2.addEventListener("click",()=>{
+    img.src='https://www.w3schools.com/js/pic_bulboff.gif'
+})
+
+
+function strictmode() {
+  "use strict";
+  x = 20;  // This line will cause an error in strict mode
+  var x;
+  console.log(x);
+}
+strictmode();
+
+console.log("Hello\fWorld");
+// Outputs:
+// Hello
+//       World
+
+</script>
+
+</body>
+</html>

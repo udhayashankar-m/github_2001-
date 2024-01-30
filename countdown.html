@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+    .container{
+        height:100vh;
+        background-image:linear-gradient(to right,white,yellow,white);
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content:center;
+    }
+
+    #box{
+        width:500px;
+        height:50px;
+        border:2px solid white;
+        border-radius:2px;
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        font-size: 30px;
+       
+    }
+    #ampm{
+        padding-left:10px;
+    }
+    #days{
+        padding-right:10px;
+    }
+    </style>
+</head>
+</head>
+<body>
+    <div class="container">
+       
+        <div id="box">
+            <span id="days">0</span>
+            
+            <span id="hour">00</span>
+            <span>:</span>
+            <span id="min">00</span>
+            <span>:</span>
+            <span id="sec">00</span>
+            
+
+        </div>
+    </div>
+    <script>
+
+        function countdown(){
+        let days = document.getElementById('days')
+        let hour = document.getElementById('hour')
+        let min = document.getElementById('min')
+        let sec = document.getElementById('sec')
+
+        let currentyear = new Date().getFullYear();
+
+        let newyear = new Date(`sep11 ${currentyear} 00:00:00`) 
+
+        let currenttime = new Date()
+
+        let diff = newyear-currenttime
+
+        let d = Math.floor(diff/1000/60/60/24)
+        days.innerHTML = d+' days'
+
+        let hrs = Math.floor((diff/1000/60/60)%24)
+        hour.innerHTML = hrs+' hrs'
+
+        let m = Math.floor((diff/1000/60)%60)
+        min.innerHTML = m+' min'
+
+        let s = Math.floor((diff/1000)%60)
+        sec.innerHTML = s+' sec'
+
+        }
+       setInterval(countdown,1000)
+    </script>
+</body>
+</html>

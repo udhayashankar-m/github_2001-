@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        
+        }
+        body{
+            background-color: rgb(177, 177, 248);
+        }
+        .container{
+            max-width:600px;
+            height:680px;
+            display:grid;
+            grid-template-rows: 1fr 1fr 1fr 2fr;
+            text-align:center;
+            background-color: darkslateblue;
+            margin:auto;
+            margin-top:20px;
+
+
+
+        }
+
+        .header{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+
+
+        }
+        .header h1:hover{
+               cursor:pointer;
+               transition: .3s linear ;
+        }
+        #city{
+            width:400px;
+            height:30px;
+        }
+        button{
+          
+            width:100px;
+            height:30px;
+
+
+        }
+        #output{
+            width:560px;
+            height:340px;
+            color:white;
+            display:flex;
+            justify-content:center;
+            border: 1px solid white;
+            position:relative;
+            left:20px;
+            bottom:8px;
+            cursor:text;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>select city</h1>
+        </div>
+
+        <div class="option">
+            <select name="city" id="city">
+                <option value="chennai">chennai</option>
+                <option value="vellore">vellore</option>
+                <option value="coimbatore">coimbatore</option>
+                <option value="kanchipuram">kanchipuram</option>
+            </select>
+        </div>
+
+        <div class="button"> 
+            <button id="button" type="submit">show</button>
+        </div>
+
+    </div>
+    <script>
+
+       let button = document.getElementById("button")
+       button.addEventListener('click',show)
+       let divtag = document.createElement('div')
+       divtag.id = 'output'
+       document.querySelector('.container').appendChild(divtag)
+       
+
+      
+       function show()
+       {
+        let district = document.getElementById("city")
+        let option = district.options[district.selectedIndex].value 
+        let  population = 0 , literacy = 0 
+        switch(option){ 
+            case 'chennai':
+            population = 5500000
+            literacy = 87
+            break
+               
+            case 'vellore':
+            population = 4500000
+            literacy = 85
+             break
+            
+            case 'coimbatore':
+            population = 3300000
+            literacy = 86
+            break
+
+            case 'kanchipuram':
+            population = 4200000
+            literacy = 82
+            break
+
+        }
+
+        let text = ` The ${option} in the state of Tamilnadu in India and common language is tamil and which population are ${population} and the literacy rate are ${literacy} `
+        let output = document.getElementById("output");
+        output.innerHTML = text;
+    }
+      
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+    .container{
+        height:100vh;
+        background-image:linear-gradient(to right,white,yellow,white);
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content:center;
+    }
+
+    #box{
+        width:200px;
+        height:40px;
+        border:2px solid white;
+        border-radius:2px;
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        font-size: 30px;
+       
+    }
+    #ampm{
+        padding-left:10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <div id="box">
+            <span id="hour">00</span>
+            <span>:</span>
+            <span id="min">00</span>
+            <span>:</span>
+            <span id="sec">00</span>
+            <span></span>
+            <span id="ampm">AM</span>
+
+        </div>
+    </div>
+    <script>
+        let ampm = document.getElementById('ampm')
+        function time(){
+            let datetime = new Date()
+            let hrs = datetime.getHours();
+            let min = datetime.getMinutes();
+            let sec = datetime.getSeconds();
+            if(hrs>=12){
+               hrs=hrs-12
+               ampm.innerHTML = 'PM'
+            }
+               
+            let hours = document.getElementById('hour').innerHTML = zero(hrs);
+            let minutes = document.getElementById('min').innerHTML = zero(min);
+            let seconds = document.getElementById('sec').innerHTML = zero(sec);
+
+        }
+
+        function zero(num){
+                  if(num<10){
+                    return'0'+num
+                   
+                  }
+                  else{
+                    return num
+                  }
+        }
+        setInterval(time,500)
+
+    </script>
+</body>
+</html>

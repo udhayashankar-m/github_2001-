@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+     *{
+        margin:0;
+        padding:0;
+        text-align: center;
+     }
+     #gameboard{
+       border:1px solid  black;
+      
+       
+
+      
+
+     }
+    </style>
+</head>
+<body>
+    <h1>snake game</h1>
+    <p>press space to pause and continue</p>
+    <div id="container">
+        <canvas id="gameboard" width="500" height="500"></canvas>
+        <div id="score">score:<span id="scoreval">0</span></div>
+    </div>
+    
+    <script>
+        const gameboard = document.getElementById('gameboard');
+        const context = gameboard.getContext('2d');
+        const scoreval = document.getElementById('scoreval'); 
+       
+        let width = gameboard.width;
+        let height = gameboard.height;
+        let x;
+        let y;
+        let fwh = 20;
+        let snake = [
+            {x:fwh*3,y:0},
+            {x:fwh*2,y:0},
+            {x:fwh,y:0},
+            {x:0,y:0}
+        ]
+        
+        let xvel = 20;
+        let yvel = 0;
+        let score = 0;
+        let active = true;
+        let started = false;
+         
+        window.addEventListener('keydown',keypress)
+
+        startgame();
+
+        function startgame(){
+            context.fillStyle = 'black';
+            context.fillRect(0,0,width,height);
+            create_food();
+            display_food();
+            
+        }   
+
+        function clear_board(){
+            context.fillStyle = 'black'
+            context.fillRect(0,0,width,height);
+
+        }
+
+        function create_food(){
+            x = Math.floor((Math.random()*width)/fwh)*fwh
+            y = Math.floor((Math.random()*height)/fwh)*fwh
+        }
+        
+        
+
+        function display_food(){
+            context.fillStyle = 'white'
+            context.fillRect (x,y,fwh,fwh)
+
+        }
+
+        function create_snake(){
+            context.fillStyle = 'white'
+            context.strokeStyle = 'black'
+            snake.forEach((s)=>{
+                context.fillRect(s.x,s.y,fwh,fwh)
+                context.strokeRect(s.x,s.y,fwh,fwh)
+
+            })}
+
+        function move_snake(){
+          let head = {x:snake[0].x+xvel,
+                      y:snake[0].y+yvel}
+        console.log(head)
+        snake.unshift(head)
+        if(snake[0].x==x && snake[0].y == y){
+            score +=1
+            scoreval.innerHTML = score;
+            create_food()
+        }
+        else{
+        snake.pop()
+        }
+
+
+        }
+
+        function con()
+        {
+            if (active){
+
+            setTimeout(()=>{
+            clear_board()
+            display_food();
+            create_snake();
+            move_snake();
+            check_gameover()
+            con();
+               
+            },100);
+
+        }
+        else
+        {
+            clear_board()
+            context.font = 'bold 50px  serif';
+            context.fillStyle = 'white';
+            context.textAlign = 'center';
+            context.fillText("game over!!",width/2,height/2);
+        }
+    
+    }
+        
+    
+        
+        function keypress(event){
+            if(!started){
+                started = true;
+                con()
+            }
+            let left = 37;
+            let up = 38;
+            let right = 39;
+            let down = 40;
+            
+
+            switch(true){  
+                case(event.keyCode == left  && xvel != fwh):
+                xvel = -fwh;
+                yvel = 0;
+                break;
+
+                case(event.keyCode == up && yvel != fwh):
+                xvel = 0;
+                yvel = -fwh;
+                break;
+
+                case(event.keyCode == right && xvel != -fwh):
+                xvel = fwh;
+                yvel = 0;
+                break;
+
+                case(event.keyCode == down && yvel != -fwh):
+                xvel = 0;
+                yvel = fwh;
+                break;
+                     
+            }
+        }
+
+            function check_gameover(){
+                switch(true){
+
+                case(snake[0].x<0):
+                case(snake[0].x>width):
+                case(snake[0].y>height):
+                case(snake[0].y<0):
+                active = false;
+                break;
+            }
+            }            
+    
+    </script>
+
+
+    
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        body{
+            display:flex;
+            align-items: center;
+            justify-content:center;
+            background-color:rgb(249, 236, 221);
+
+        }
+     
+        .box{
+            width:400px;
+            height:500px;
+            background-color: black;
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content:flex-start;
+            margin-top:100px;
+            border-radius: 8px;
+
+        }
+        
+        .head{
+  
+             color:rgb(250, 250, 206);
+             padding-bottom: 20px;
+             padding-top: 30px;   
+        }
+
+        .input{
+
+            padding-bottom: 10px;
+            padding-top: 10px;   
+        }
+ 
+        .button{
+
+            display:flex;
+            align-items: flex-start;
+            justify-content:center;
+        }
+
+        input{
+            height:32px;
+            width:100%;
+            border-radius: 3px;
+
+        }
+    
+        button{
+
+            height:24px;
+            width:125%;
+            background-color: antiquewhite;
+            width:150px;
+            height:32px;
+            cursor:pointer;
+        }
+        #output{
+            width:200px;
+            height:32px;
+            border:1px solid antiquewhite;
+            position:relative;
+            top:16px;
+            color:white;
+            display:flex;
+            align-items: center;
+            justify-content:center;
+
+           
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="box">
+        <h4 class="head">word counter</h4>
+        <div class="input">
+            <input type="text" id="text" placeholder="paste or type the text">
+        </div>
+        <div class="button">
+            <button id="button" type="sumbit">count</button>
+        </div>
+        <div id="output">
+        </div>
+    </div>
+
+    <script>
+        let button = document.getElementById("button")
+        button.addEventListener('click',count_word)
+        
+         function count_word(){
+
+        let str =document.getElementById("text").value
+        console.log(str)
+        let str1 = str.trim().replace(/\s+/g,' ')
+        let word = str1.split(" ")
+        console.log(word)
+        let count = word.length
+        
+        if (word[0] == "")
+        {
+           count = 0;
+        }
+        
+        let output = document.querySelector("#output")
+        output.innerHTML = "word count"+"  "+ count
+
+        }
+
+
+    </script>
+</body>
+</html>
